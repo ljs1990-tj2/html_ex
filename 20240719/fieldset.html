@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="input1.html">
+        <fieldset>
+            <legend>회원가입</legend>
+            <div>
+                <label>아 이 디 : <input type="text"> </label>
+            </div>
+            <div>
+                <label>패스워드 : <input type="password"> </label>
+            </div>
+            <div>
+                <label>이름 : <input type="text"> </label>
+            </div>
+            <div>
+                <!-- 취미를 체크박스로 선택하도록 (영화감상, 운동, 코딩) -->
+                <label>취미 : </label>
+                <label><input type="checkbox" value="movie">영화감상</label>
+                <label><input type="checkbox" value="20">운동</label>
+                <label><input type="checkbox" value="30">코딩</label>
+            </div>
+            <div>
+                <label>나이대 : </label>
+                <select>
+                    <option value="10">10대</option>
+                    <option value="20">20대</option>
+                    <option value="30">30대</option>
+                    <option value="40">40대</option>
+                    <option value="50">50대 이상</option>
+                </select>
+            </div>
+            <div>
+                <label>자기소개 : </label>
+                <textarea cols="50" rows="10" placeholder="자기소개"></textarea>
+            </div>
+            <input type="submit" value="가입하기">
+            <input type="reset" value="초기화"> <!-- <button type="reset">초기화</button> -->
+        </fieldset>
+    </form>
+</body>
+</html>
