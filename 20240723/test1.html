@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input placeholder="첫번째 숫자" id="num1">
+    <input placeholder="두번째 숫자" id="num2">
+    <button onclick="sum()">더하기</button>
+    <div id="result"></div>
+</body>
+</html>
+<script>
+    function sum(){
+        var item = document.querySelector("#result");    
+        var num1 = parseInt(document.querySelector("#num1").value);
+        var num2 = parseInt(document.querySelector("#num2").value);
+        item.innerHTML = "<h3 style='color:red;'>" + (num1 + num2) + "</h3>"; 
+    }
+</script>

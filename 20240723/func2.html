@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        a{color : red;}
+    </style>
+</head>
+<body>
+    <a href="#" onclick="colorChange()" id="txt">색 바꾸기</a>
+    <a href="#" onclick="colorChange2()" id="txt2">색 바꾸기</a>
+</body>
+</html>
+<script>
+    function colorChange(){
+        var aTag = document.getElementById("txt");
+        console.log("===>", aTag.style.color);
+        if(aTag.style.color == "blue"){
+            aTag.style.color = "red";
+        } else {
+            aTag.style.color = "blue";
+        } 
+    }
+    function colorChange2(){
+        var aTag = document.querySelector("#txt2");
+        console.log("===>", aTag.style.color);
+        if(aTag.style.color == "blue"){
+            aTag.style.color = "red";
+        } else {
+            aTag.style.color = "blue";
+        } 
+    }
+</script>
