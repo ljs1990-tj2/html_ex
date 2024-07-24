@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>회원 가입</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #ccc;
+      padding: 20px;	
+    }
+
+    #signup {
+      background:#fff;
+      border:1px solid #222;
+      border-radius: 5px;
+      padding: 20px;
+      width: 400px;	
+      margin:30px auto;
+    }
+        
+    #signup fieldset {
+      border: 1px solid #ccc;
+      margin-bottom: 30px;
+    }
+        
+    #signup legend {
+      font-size: 16px;
+      font-weight: bold;
+      padding-left:5px;
+      padding-bottom: 10px;	
+    }
+
+    #signup ul li {
+      line-height: 30px;
+      list-style: none;
+      padding: 5px 10px;
+      margin-bottom: 2px;
+    }
+          
+    #signup button {	
+      border: 1px solid #222;
+      border-radius: 20px;
+      display: block;
+      font-size: 16px;
+      letter-spacing: 1px;
+      margin: auto;
+      padding: 7px 25px;
+    }
+
+    #signup label {
+      float: left;  /* 왼쪽으로 배치 */
+      font-size: 13px;  /* 글자 크기 - 13px */
+      width: 110px;  /* 너비 - 110px */
+    }
+
+    #signup input:not([type=radio]) {  /* 가상 선택자를 사용해 간단히 줄일 수 있음 */
+      border: 1px solid #ccc;  /* 텍스트 필드 테두리 지정 */
+      border-radius: 3px;  /* 텍스트 필드 모서리를 둥글게 지정 */
+      font-size: 13px;  /* 텍스트 필드 안의 글자 크기 지정 */
+      padding: 5px;  /* 텍스트 필드와 내용 사이의 패딩 지정 */
+      width: 200px;  /* 텍스트 필드 너비 지정 */
+    }					
+
+    #signup input[required] {  /* 필수 입력 필드의 스타일 */
+      border:1px red solid;
+    }
+
+    #signup input[readonly] {  /* 읽기 전용 필드의 스타일 */
+      border:none;
+    }
+
+    #signup fieldset:last-of-type {  /* 마지막 fieldset의 스타일 */
+      border:none;  /* 테두리 없앰 */
+      margin-bottom:0;  /* 아래쪽 마진 없앰 */
+    }
+  </style>
+</head>
+<body>
+  <div id="signup">
+    <fieldset>
+      <legend>로그인 정보</legend>
+      <ul>
+        <li>
+          <label for="userid">아이디</label>
+          <input id="userid" name="userid" type="text" autofocus>
+        </li>
+        <li>
+          <label for="pwd1">비밀번호</label>
+          <input id="pwd1" name="pwd1" type="password">
+        </li>
+        <li>
+          <label for="pwd2">비밀번호 확인</label>
+          <input id="pwd2" name="pwd2" type="password">
+        </li>  
+        <li>
+          <label for="level">회원 등급</label>
+          <input id="level" name="level" type="text" disabled value="준회원">
+        </li>
+      </ul>
+    </fieldset>
+    <fieldset>
+      <legend>개인 정보</legend>
+      <ul>
+        <li>
+          <label for="fullname">이름</label>
+          <input id="fullname" name="fullname" type="text" placeholder="5자미만 공백없이">
+        </li>
+        <li>
+          <label for="email">메일 주소</label>
+          <input id="email" name="email" type="email" placeholder="abcd@domain.com" autocomplete="off">
+        </li>
+        <li>
+          <label for="tel">연락처</label>
+          <input id="tel" name="tel" type="text" placeholder="숫자만(ex 01012341234)">
+        </li>  
+      </ul>
+    </fieldset>
+    <fieldset>
+      <button onclick="fnJoin()"> 제출 </button> 
+    </fieldset>
+  </div>
+</body>
+</html>
+<script>
+    function fnJoin(){
+        var userid = document.querySelector("#userid").value;
+        // id 체크
+        if(userid == ""){
+            alert("아이디를 입력해주세요.");
+            return;
+        }
+        var pwd1 = document.querySelector("#pwd1").value;
+        var pwd2 = document.querySelector("#pwd2").value;
+        // pwd 빈 값 체크
+        if(pwd1 == ""){
+            alert("비밀번호를 입력해주세요.");
+            return;
+        }
+        // pwd 5글자 이하 여부 체크
+        if(pwd1.length <= 5){
+            alert("비밀번호는 6글자 이상 입력해주세요");
+            return;
+        }
+        // pwd1, pwd2 같은지 체크
+        if(pwd1 != pwd2){
+            alert("비밀번호의 값이 서로 다릅니다");
+            return;
+        }
+        // 이름 빈값 체크
+        var fullname = document.querySelector("#fullname").value;
+        if(fullname == ""){
+            alert("이름을 입력해주세요.");
+            return;
+        }
+        alert("가입되었습니다!");
+    }
+</script>

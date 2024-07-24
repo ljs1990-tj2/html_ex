@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <button onclick="fnAppend()">appendChild</button>
+        <button onclick="fnBefore()">insertBefore</button>
+        <button onclick="fnCreate()">createElement</button>
+        <button onclick="fnCreAttr()">createAttribute</button>
+        <button onclick="fnRemoveChild()">removeChild</button>
+        <button onclick="fnRemoveAttribute()">removeAttribute</button>
+        <button onclick="fnClone()">clone</button>
+    </div>
+    <h3 id="js">자바스크립트</h3>
+    <div id="list">
+        <p>자바</p>
+        <p id="oracle" style="color:blue;">오라클</p>
+        <p>html</p>
+
+    </div>
+</body>
+</html>
+<script>
+    function fnAppend(){
+        var list = document.querySelector("#list");
+        var item = document.getElementById("js");
+        list.appendChild(item);
+    }
+    function fnBefore(){
+        var list = document.querySelector("#list");
+        var item = document.getElementById("js");
+        var oracle = document.getElementById("oracle");
+        list.insertBefore(item, oracle);
+    }
+    function fnCreate(){
+        var list = document.querySelector("#list");
+        var jquery = document.createElement("p");
+        jquery.innerHTML = "jquery";
+        list.appendChild(jquery);
+    }
+    function fnCreAttr(){
+        var list = document.querySelector("#list");
+        var jquery = document.createElement("p");
+        jquery.innerHTML = "jquery";
+
+        var attr = document.createAttribute("style"); 
+        attr.value = "color:red; font-weight:bold;";
+        jquery.setAttributeNode(attr); // <p style="color:red; font-weight:bold;">jquery</p>
+
+        list.appendChild(jquery);
+    }
+    function fnRemoveChild(){
+        var list = document.querySelector("#list");
+        var item = document.getElementById("oracle");
+        list.removeChild(item);
+    }
+
+    function fnRemoveAttribute(){
+        var item = document.getElementById("oracle");
+        item.removeAttribute("style");
+    }
+    function fnClone(){
+        var list = document.querySelector("#list");
+        var item = document.getElementById("js");
+        list.appendChild(item.cloneNode(true));
+    }
+</script>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="time"></div>
+</body>
+</html>
+<script>
+    
+    // var obj = document.querySelector("#time");
+    // obj.innerHTML = time.toLocaleString();
+    // console.log(time.getFullYear());
+    // console.log(time.getMonth()+1); // 0~11
+    // console.log(time.getDate());
+    // console.log(time.getDay());
+   
+    setInterval(()=>{
+        var time = new Date(); 
+        var obj = document.querySelector("#time");
+        var datetime = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
+        obj.innerHTML = datetime;
+    }, 1000);
+
+    setTimeout(fnAlert, 5000);
+
+    function fnAlert(){
+        alert("5초 지났다!");
+    }
+
+
+</script>

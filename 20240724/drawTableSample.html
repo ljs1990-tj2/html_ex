@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input[type="text"] {
+      width:30px;
+      height:20px;
+      text-align: center;
+    }
+    button {
+      margin-left:10px;
+    }
+    table {
+      width:300px;      
+    }
+    table, td {
+      border:1px solid #ccc;
+      border-collapse: collapse;
+    }
+    td {
+      padding:10px;
+    }
+    </style>
+</head>
+<body>
+    <input id="rCnt" placeholder="행">
+    <input id="cCnt" placeholder="열">
+    <button onclick="fnDrawTable()">생성!</button>
+
+    <div id="content"></div>
+    <!-- <table>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </table> -->
+        
+</body>
+</html>
+<script>
+    function fnDrawTable(){
+        var rowCnt = document.querySelector("#rCnt").value;
+        var colCnt = document.querySelector("#cCnt").value;
+
+        var table = document.createElement("table");
+
+        for(var i=0; i<rowCnt; i++){
+            var row = document.createElement("tr");
+            for(var j=0; j<colCnt; j++){
+                var col = document.createElement("td");
+                col.innerHTML = i + "," + j;
+                row.appendChild(col);
+            }
+            table.appendChild(row);
+        }
+
+        var content = document.querySelector("#content");
+        content.appendChild(table);
+    }
+</script>
