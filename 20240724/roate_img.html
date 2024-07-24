@@ -13,10 +13,10 @@
       border:1px solid #ccc;
       border-radius:50%;      
       box-shadow: 5px 5px 30px 2px #000;
-      animation:rotateBear 5s infinite; /* rotateBear 애니메이션 2.5초 동안 실행. 무한 반복 */
+      animation:rotate 5s infinite; /* rotateBear 애니메이션 2.5초 동안 실행. 무한 반복 */
     }
 
-    @keyframes rotateBear {
+    @keyframes rotate {
       from { transform: perspective(200px) rotateY(0deg); }
       50% { transform: perspective(200px) rotateY(-180deg); }      
       to { transform:  perspective(200px) rotateY(-360deg); }
