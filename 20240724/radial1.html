@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .r-grad{
+            /* background: radial-gradient(circle, aqua, lightpink, bisque); */
+            /* background: radial-gradient(circle at 30% 30%, aqua, lightpink); */
+            /* background: radial-gradient(circle, aqua, lightpink 30%, bisque 70%); */
+            background: repeating-radial-gradient(circle, aqua, lightpink, bisque 20%);
+        }
+        .r-grad2{
+            background: radial-gradient(circle closest-side at 30% 40%, aqua, lightpink, bisque);
+        }
+        .r-grad3{
+            background: radial-gradient(circle closest-corner at 30% 40%, aqua, lightpink, bisque);
+        }
+        .r-grad4{
+            background: radial-gradient(circle farthest-side at 30% 40%, aqua, lightpink, bisque);
+        }
+        .r-grad5{
+            background: radial-gradient(circle farthest-corner at 30% 40%, aqua, lightpink, bisque);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box r-grad"></div>
+    <div class="box r-grad2"></div>
+    <div class="box r-grad3"></div>
+    <div class="box r-grad4"></div>
+    <div class="box r-grad5"></div>
+</body>
+</html>

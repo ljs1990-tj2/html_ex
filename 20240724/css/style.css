@@ -1,0 +1,9 @@
+.box {
+    width: 400px;
+    height: 250px;
+    border: 1px solid #eee;
+}
+.grad {
+    /* background: aqua; */
+    background: linear-gradient(90deg, aqua, lightpink 40%, aqua);
+}
