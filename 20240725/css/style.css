@@ -1,0 +1,17 @@
+#header{width:100%; border-bottom:1px solid #ddd; background-color:#fff;}
+#header h1{padding:10px; margin:0; font-weight:bold; font-size:25px;}
+
+#container{padding: 50px;}
+
+.content-nav{position:fixed; z-index:100; top:61px; right:0; width:420px; border:1px solid #ddd; background-color:#fff;}
+.content-nav > h2{padding:15px 20px; margin:-24px 40px 0 40px; background-color:black; text-align:center; font-weight:400; font-size:18px; color:#fff;}
+.content-nav > ul{height:100%; padding:50px 40px; margin-top:-24px;}
+
+.content-nav > ul {list-style: none;}
+.content-nav > ul li{font-weight: bold; font-size: 20px;}
+.content-nav > ul li a{text-decoration: none;}
+.content-nav > ul li a:visited, .content-nav > ul li a:link{color : black;}
+.content-nav > ul > li + li{margin-top:35px;}
+.content-nav > ul > li > ul{margin-top:20px;}
+.content-nav > ul > li > ul > li{display:block;}
+.content-nav > ul > li > ul > li > a{font-weight:400; font-size:14px; color:#666;}
