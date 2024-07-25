@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-rows: minmax(100px, auto);
+            gap : 20px 30px; /* grid-gap : 20px 30px; */
+        }
+        .txt {
+            padding : 10px;
+            background-color: #eee;
+        }
+        .txt:nth-child(odd) {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Virtute genuit difficiles exeduntur sequamur libris. Placet repetitis sine diis contemnentes errore, faciendi expetendum, summa vendibiliora suscipiantur. </div>
+        <div class="txt">Verborum perpaulum referenda latinas dignitatis arbitrium blandit posteri quaeritur. </div>
+        <div class="txt">Aequitate accedis infimum dein male perpetua praetorem multos pede ipsis tollit. Adversa feugiat tot eosque idcirco detractio, meliore maius. Desiderat sublatum inprobitas fortasse desistemus tueri</div>
+        <div class="txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+        <div class="txt">Cui erigimur cursu invidia mortem dixissem diligenter dixit brute. Excruciant tribuat satis adipiscendarum, gravitate,</div>
+    </div>
+</body>
+</html>
