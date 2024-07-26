@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="js/jquery-3.7.1.min.js"></script> 
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <meta charset="EUC-KR">
+    <title>Insert title here</title>
+    <style>
+    </style>
+</head>
+<body>
+<div id="app">
+    <div v-if="isName">{{name}}</div>
+    <button @click="fnView">클릭!</button>
+</div>
+
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                name : "홍길동",
+                isName : false 
+            };
+        },
+        
+        methods: {
+            fnView(){
+                this.isName = !this.isName;
+            }
+        },
+
+        mounted() {
+            
+        }
+    });
+    app.mount('#app');
+</script>
+</body>
+</html>
+​

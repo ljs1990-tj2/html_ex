@@ -1,70 +1,93 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <script src="js/jquery-3.7.1.min.js"></script> 
+    <script src="js/jquery-3.7.1.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <meta charset="EUC-KR">
     <title>Insert title here</title>
     <style>
-        table, tr, td, th {
+        table,
+        tr,
+        td,
+        th {
             border: 1px solid;
             text-align: center;
             border-collapse: collapse;
         }
-        tr, td, th {
+
+        tr,
+        td,
+        th {
             padding: 5px 10px;
         }
     </style>
 </head>
-<body>
-<div id="app">
-    <table> 
-        <tr>
-            <th>아이디</th>
-            <th>이름</th>
-            <th>이메일</th>
-            <th>웹사이트</th>
-            <th></th>
-        </tr>
-        <tr v-for="item in list">
-            <td>{{item.id}}</td>
-            <td>{{item.name}}</td>
-            <td>{{item.email}}</td>
-            <td>{{item.website}}</td>
-            <td><button @click="fnInfo(item)">상세보기</button></td>
-        </tr>
-    </table>
-</div>
 
-<script>
-    const app = Vue.createApp({
-        data() {
-            return {
-                name : "홍길동",
-                list : []
-            };
-        },
-        methods: {
-            fnGetList(){
-                $.ajax({
-                    url : "https://jsonplaceholder.typicode.com/users",
-                    dataType : "json",
-                    type : "GET",
-                    data : {},
-                    success : (data) => {
-                        this.list = data;
-                    }
-                });
+<body>
+    <div id="app">
+        <table v-if="!isInfo">
+            <tr>
+                <th>번호</th>
+                <th>이름</th>
+                <th>이메일</th>
+                <th>웹사이트</th>
+                <th></th>
+            </tr>
+            <tr v-for="(item, index) in list">
+                <td>{{index+1}}</td>
+                <td>
+                    <span v-if="index+1 <= 5" style="color:blue;">{{item.name}}</span>
+                    <span v-else>{{item.name}}</span>
+                </td>
+                <td>{{item.email}}</td>
+                <td>{{item.website}}</td>
+                <td><button @click="fnInfo(item)">상세보기</button></td>
+            </tr>
+        </table>
+        <div v-if="isInfo">
+            <div>이름 : {{info.name}}</div>
+            <div>이메일 : {{info.email}}</div>
+            <div><button @click="isInfo = false">되돌아가기</button></div>
+        </div>
+    </div>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    name: "홍길동",
+                    list: [],
+                    info : {},
+                    isInfo : false
+                };
             },
-            fnInfo(item){
-                alert(item.name);
+            methods: {
+                fnGetList() {
+                    var self = this;
+                    $.ajax({
+                        url: "https://jsonplaceholder.typicode.com/users",
+                        dataType: "json",
+                        type: "GET",
+                        data: {},
+                        success: function (data) {
+                            self.list = data;
+                        }
+                    });
+                },
+                fnInfo(item) {
+                    var self = this;
+                    self.info = item;
+                    this.isInfo = true;
+
+                }
+            },
+            mounted() {
+                this.fnGetList();
             }
-        },
-        mounted() {
-            this.fnGetList();
-        }
-    });
-    app.mount('#app');
-</script>
+        });
+        app.mount('#app');
+    </script>
 </body>
+
 </html>
