@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery-3.7.1.min.js"></script> 
+</head>
+<body>
+    <div>
+        <label><input type="radio" name="subject" value="java"><span>자바</span></label>
+    </div>
+    <div>
+        <label><input type="radio" name="subject" value="oracle"><span>오라클</span></label>
+    </div>
+    <div>
+        <label><input type="radio" name="subject" value="html"><span>html/css/javascsript</span></label>
+    </div>
+    <div>
+        <label><input type="radio" name="subject" value="jquery"><span>jQuery</span></label>
+    </div>
+    <div><button style="margin-top : 20px;">클릭!</button></div>
+    <hr>
+    <div><img width="300px" height="300px" 
+        src="" style="display: none;" alt="이미지"></div>
+</body>
+</html>
+<script>    
+    
+    $("button").on("click", function(){
+        var subject = $("input[name='subject']:checked").val();
+        var img = $("img"); 
+        img.css("display", "inline");              
+        if(subject == 'html'){
+            img.attr("src", "images/html.jpg");       
+        } else if(subject == 'java'){
+            img.attr("src", "images/java.jpg");
+        } else if(subject == 'oracle'){
+            img.attr("src", "images/oracle.jpg");
+        } else if(subject == 'jquery'){
+            img.attr("src", "images/jquery.jpg");
+        }
+
+        // 파일명 같을 경우
+        // var link = "images/" + subject + ".jpg";
+        // img.attr("src", link); 
+    });
+    
+</script>
