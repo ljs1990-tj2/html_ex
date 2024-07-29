@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="js/jquery-3.7.1.min.js"></script> 
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <meta charset="EUC-KR">
+    <title>Insert title here</title>
+    <style>
+    </style>
+</head>
+<body>
+<div id="app">
+
+</div>
+
+
+</body>
+</html>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                
+            };
+        },
+        methods: {
+            fnGetList(){
+                $.ajax({
+                    url : "http://localhost:3000/list",
+                    dataType : "json",
+                    type : "GET",
+                    data : {},
+                    success : function(data){
+                        console.log(data);
+                    }
+                });
+            }
+        },
+        mounted() {
+           this.fnGetList();
+        }
+    });
+    app.mount('#app');
+</script>
