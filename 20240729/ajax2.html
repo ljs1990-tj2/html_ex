@@ -26,6 +26,8 @@
 
 <body>
     <div id="app">
+        <input placeholder="검색어" v-model="keyword">
+        <button @click="fnGetList">검색</button>
         <table>
             <tr>
                 <th>학번</th>
@@ -51,25 +53,40 @@
         const app = Vue.createApp({
             data() {
                 return {
-                    list : []
+                    list : [],
+                    keyword : ""
                 };
             },
             methods: {
                 fnGetList() {
                     var self = this;
                     $.ajax({
-                        url: "http://localhost:3000/list",
+                        url: "http://localhost:3000/list?keyword=" + self.keyword,
                         dataType: "json",
                         type: "GET",
                         data: {},
                         success: function (data) {
                             self.list = data;
+                            console.log(data);
                         }
                     });
                 },
+                // fnSearch(){
+                //     var self = this;
+                //     $.ajax({
+                //         url: "http://localhost:3000/search?id=" + self.stuNo,
+                //         dataType: "json",
+                //         type: "GET",
+                //         data: {},
+                //         success: function (data) {
+                //             self.list = data;
+                //         }
+                //     });
+                // }
 
             },
             mounted() {
+                // 처음 화면이 실행될때 호출할 부분
                 this.fnGetList();
             }
         });
