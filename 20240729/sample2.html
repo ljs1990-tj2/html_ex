@@ -15,9 +15,13 @@
         </div>
         <template v-if="isView">
             <div v-if="age >= 30">30세 이상 입니다.</div>
-            <div v-else>30세 미만 입니다.</div>
+            <div v-else-if="age >= 20">20세 이상 입니다.</div>
+            <div v-else>20살 미만입니다.</div>
         </template>
-    </div>
+        <hr>
+        <!-- and(&&), or(||) -->
+        <div v-if="age >= 20 && age <= 29">20대 입니다.</div>
+    </div>  
 </body>
 </html>
 <script>
