@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <meta charset="EUC-KR">
+    <title>Insert title here</title>
+    <style>
+        table,
+        tr,
+        td,
+        th {
+            border: 1px solid;
+            text-align: center;
+            border-collapse: collapse;
+        }
+
+        tr,
+        td,
+        th {
+            padding: 5px 20px;
+        }
+        td input {width: 70px;}
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input placeholder="검색어" v-model="keyword">
+        <button @click="fnGetList">검색</button>
+        <table>
+            <tr>
+                <th>학번</th>
+                <th>이름</th>
+                <th>학과</th>
+                <th>학년</th>
+                <th>성별</th>
+                <th></th>
+            </tr>
+            <tr v-for="item in list">
+                <template v-if="item.STU_NO == updateStuNo">
+                    <td>{{item.STU_NO}}</td>
+                    <td><input v-model="item.STU_NAME"></td>
+                    <td><input v-model="item.STU_DEPT"></td>
+                    <td><input v-model="item.STU_GRADE"></td>
+                    <td><input v-model="item.STU_GENDER"></td>
+                    <td><button @click="">저장</button></td>
+                </template>
+                <template v-else>            
+                    <td>{{item.STU_NO}}</td>
+                    <td>{{item.STU_NAME}}</td>
+                    <td>{{item.STU_DEPT}}</td>
+                    <td>{{item.STU_GRADE}}</td>
+                    <td>
+                        <span v-if="item.STU_GENDER == 'M'">남자</span>
+                        <span v-else>여자</span>
+                    </td>
+                    <td><button @click="fnUpdate(item.STU_NO)">수정</button></td>
+                </template>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    list : [],
+                    keyword : "",
+                    updateStuNo : ""
+                };
+            },
+            methods: {
+                fnGetList() {
+                    var self = this;
+                    $.ajax({
+                        url: "http://localhost:3000/list?keyword=" + self.keyword,
+                        dataType: "json",
+                        type: "GET",
+                        data: {},
+                        success: function (data) {
+                            self.list = data;
+                            console.log(data);
+                        }
+                    });
+                },
+                fnUpdate(stuNo){
+                    console.log(stuNo);
+                    this.updateStuNo = stuNo;
+                }
+                // fnSearch(){
+                //     var self = this;
+                //     $.ajax({
+                //         url: "http://localhost:3000/search?id=" + self.stuNo,
+                //         dataType: "json",
+                //         type: "GET",
+                //         data: {},
+                //         success: function (data) {
+                //             self.list = data;
+                //         }
+                //     });
+                // }
+
+            },
+            mounted() {
+                // 처음 화면이 실행될때 호출할 부분
+                this.fnGetList();
+            }
+        });
+        app.mount('#app');
+    </script>
+</body>
+
+</html>
