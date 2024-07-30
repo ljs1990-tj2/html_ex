@@ -125,12 +125,10 @@
                         type: "GET",
                         data: {},
                         success: function (data) {
-                            self.list = data;
-                            console.log(data);
+                            alert(data[0].message);
+                            self.fnGetList();
                         }
                     });
-                    
-
                 }
 
             },

@@ -58,23 +58,14 @@ app.get('/list', async (req, res) => {
   }
 });
 
-
-app.get('/search', async (req, res) => {
-  const { id } = req.query;
+app.get('/delete', async (req, res) => {
+  const { stuNo } = req.query;
   try {
-    const result = await connection.execute(`SELECT * FROM STUDENT WHERE STU_NO LIKE '%${id}%'`);
-    const columnNames = result.metaData.map(column => column.name);
-
-    // 쿼리 결과를 JSON 형태로 변환
-    const rows = result.rows.map(row => {
-      // 각 행의 데이터를 컬럼명에 맞게 매핑하여 JSON 객체로 변환
-      const obj = {};
-      columnNames.forEach((columnName, index) => {
-        obj[columnName] = row[index];
-      });
-      return obj;
-    });
-    res.json(rows);
+    await connection.execute(
+      `DELETE FROM STUDENT WHERE STU_NO = '${stuNo}'`, [], { autoCommit: true }
+    );
+   
+    res.json([{message : "삭제되었습니다"}]);
   } catch (error) {
     console.error('Error executing query', error);
     res.status(500).send('Error executing query');
