@@ -62,7 +62,7 @@
                     <td><input v-model="item.STU_DEPT"></td>
                     <td><input v-model="item.STU_GRADE"></td>
                     <td><input v-model="item.STU_GENDER"></td>
-                    <td><button @click="fnUpdate(item.STU_NO)">수정</button></td>
+                    <td><button @click="fnSave(item)">저장</button></td>
                 </template>
                 <template v-else>
                     <td>{{item.STU_NO}}</td>
@@ -125,7 +125,26 @@
                         type: "GET",
                         data: {},
                         success: function (data) {
+                            alert(data[0].message);                       
+                            self.fnGetList();                     
+                        }
+                    });
+                },
+
+                fnSave(item){
+                    if(!confirm("저장 할거냐?")){
+                        return;
+                    }; 
+                    var self = this;
+                    var url = `http://localhost:3000/update?stuNo=${item.STU_NO}&stuName=${item.STU_NAME}&stuGrade=${item.STU_GRADE}&stuGender=${item.STU_GENDER}&stuDept=${item.STU_DEPT}`
+                    $.ajax({
+                        url: url,
+                        dataType: "json",
+                        type: "GET",
+                        data: {},
+                        success: function (data) {
                             alert(data[0].message);
+                            self.updateStuNo = "";
                             self.fnGetList();
                         }
                     });
