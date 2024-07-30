@@ -37,9 +37,10 @@ app.get('/', (req, res) => {
 });
 
 app.get('/list', async (req, res) => {
-  const { keyword } = req.query;
+  const { keyword, grade } = req.query;
   try {
-    const result = await connection.execute(`SELECT * FROM STUDENT WHERE STU_NAME LIKE '%${keyword}%' OR STU_NO LIKE '%${keyword}%'`);
+    const result = await connection.execute(
+      `SELECT * FROM STUDENT WHERE (STU_NAME LIKE '%${keyword}%' OR STU_NO LIKE '%${keyword}%') AND STU_GRADE LIKE '%${grade}%'`);
     const columnNames = result.metaData.map(column => column.name);
     // 쿼리 결과를 JSON 형태로 변환
     const rows = result.rows.map(row => {
