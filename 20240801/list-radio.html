@@ -41,6 +41,7 @@
             margin-top : 5px;
             float: right;
         }
+        .select-btn {margin : 5px 0}
         input[type="radio"] {width: 20px;}
     </style>
 </head>
@@ -56,6 +57,11 @@
         </select>
         <button @click="fnGetList">검색</button>
         <div style="margin-top : 20px;"></div>
+        <select class="btn select-btn">
+            <option>이름순</option>
+            <option>학번순</option>
+            <option>학년순</option>
+        </select>
         <table>
             <tr>
                 <th>선택</th>
@@ -68,7 +74,7 @@
             <tr v-for="(item, index) in list">
                 <td><input type="radio" :id="'stu-' + index" name="stuKey" :value="item.STU_NO" v-model="selectItem"></td>
                 <td><label :for="'stu-' + index">{{item.STU_NO}}</label></td>
-                <td>{{item.STU_NAME}}</td>
+                <td><a href="javascript:;" @click="fnInfo(item.STU_NO)">{{item.STU_NAME}}</a></td>
                 <td>{{item.STU_DEPT}}</td>
                 <td>{{item.STU_GRADE}}</td>
                 <td>
@@ -148,6 +154,9 @@
                             self.fnGetList();
                         }
                     });
+                },
+                fnInfo(stuNo){
+                    location.href=`info.html?stuNo=${stuNo}`;
                 }
 
             },

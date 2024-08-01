@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app"> 
+        <!-- <label><input type="checkbox" value="java" v-model="checked">자바</label>
+        <label><input type="checkbox" value="oracle" v-model="checked">오라클</label>
+        <label><input type="checkbox" value="html" v-model="checked">html/css</label> -->
+        <label v-for="item in checkList">
+            <input type="checkbox" :value="item.value" v-model="checked">{{item.name}}
+        </label>
+        <div><button @click="fnSave">저장</button></div>
+        <hr>
+        
+        <label><input type="checkbox" v-model="testCheck">테스트</label>
+    </div>
+</body>
+</html>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                // 변수 영역, ex) name : '홍길동', age : 20
+                checkList : [
+                    {value : "java", name : "자바"},
+                    {value : "oracle", name : "오라클"},
+                    {value : "html", name : "html/css"}
+                ],
+                checked : [],
+                testCheck : false
+            };
+        },
+        methods: {
+            // 메소드 영역 
+            fnSave(){
+                console.log(this.checked);
+            }
+        },
+        mounted() {
+            // 처음 시작할 때 실행되는 부분
+        }
+    });
+    app.mount('#app');
+</script>

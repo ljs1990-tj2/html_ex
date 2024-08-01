@@ -58,7 +58,7 @@
         <div style="margin-top : 20px;"></div>
         <table>
             <tr>
-                <th><input type="checkbox" @click="fnAllCheck"></th>
+                <th><input type="checkbox" v-model="isAllCheck" @click="fnAllCheck"></th>
                 <th>학번</th>
                 <th>이름</th>
                 <th>학과</th>
@@ -66,7 +66,7 @@
                 <th>성별</th>
             </tr>
             <tr v-for="(item, index) in list">
-                <td><input type="checkbox" :id="'stu-' + index" name="stuKey" :value="item.STU_NO" v-model="selectList"></td>
+                <td><input type="checkbox" @change="isAllCheck = false" :id="'stu-' + index" name="stuKey" :value="item.STU_NO" v-model="selectList"></td>
                 <td><label :for="'stu-' + index">{{item.STU_NO}}</label></td>
                 <td>{{item.STU_NAME}}</td>
                 <td>{{item.STU_DEPT}}</td>
