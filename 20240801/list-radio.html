@@ -57,11 +57,15 @@
         </select>
         <button @click="fnGetList">검색</button>
         <div style="margin-top : 20px;"></div>
-        <select class="btn select-btn">
-            <option>이름순</option>
-            <option>학번순</option>
-            <option>학년순</option>
+        <select class="btn select-btn" v-model="orderName" @change="fnGetList">
+            <option value="STU_NAME">이름</option>
+            <option value="STU_NO">학번</option>
+            <option value="STU_GRADE">학년</option>
         </select>
+        <div style="display: inline-block; margin-right: 5px;" class="btn">
+            <label><input type="radio" name="order" v-model="orderKind" value="ASC" @change="fnGetList">오름차순</labe>
+            <label><input type="radio" name="order" v-model="orderKind" value="DESC" @change="fnGetList">내림차순</labe>
+        </div>
         <table>
             <tr>
                 <th>선택</th>
@@ -95,14 +99,16 @@
                     keyword : "",
                     updateStuNo : "",
                     stuGrade : "",
-                    selectItem : ""
+                    selectItem : "",
+                    orderName : "STU_NAME",
+                    orderKind : "ASC"
 
                 };
             },
             methods: {
                 fnGetList() {
                     var self = this;
-                    var url = `http://localhost:3000/list?keyword=${self.keyword}&grade=${self.stuGrade}`
+                    var url = `http://localhost:3000/list?keyword=${self.keyword}&grade=${self.stuGrade}&orderName=${self.orderName}&orderKind=${self.orderKind}`
                     $.ajax({
                         url: url,
                         dataType: "json",
