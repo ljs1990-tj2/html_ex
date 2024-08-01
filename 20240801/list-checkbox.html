@@ -58,7 +58,7 @@
         <div style="margin-top : 20px;"></div>
         <table>
             <tr>
-                <th><input type="checkbox"></th>
+                <th><input type="checkbox" @click="fnAllCheck"></th>
                 <th>학번</th>
                 <th>이름</th>
                 <th>학과</th>
@@ -89,7 +89,9 @@
                     keyword : "",
                     updateStuNo : "",
                     stuGrade : "",
-                    selectList : []
+                    selectList : [],
+                    defaultList : [],
+                    isAllCheck : false
 
                 };
             },
@@ -104,7 +106,9 @@
                         data: {},
                         success: function (data) {
                             self.list = data;
-                            console.log(data);
+                            for(var i=0; i<self.list.length; i++){
+                                self.defaultList.push(self.list[i].STU_NO);
+                            }
                         }
                     });
                 },
@@ -152,8 +156,16 @@
                             self.fnGetList();
                         }
                     });
+                },
+                fnAllCheck(){
+                    var self = this;
+                    self.isAllCheck = !self.isAllCheck;
+                    if(self.isAllCheck){
+                        self.selectList = self.defaultList;
+                    } else {
+                        self.selectList = [];
+                    }                  
                 }
-
             },
             mounted() {
                 // 처음 화면이 실행될때 호출할 부분
