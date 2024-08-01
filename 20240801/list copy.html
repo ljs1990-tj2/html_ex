@@ -64,21 +64,34 @@
                 <th>학과</th>
                 <th>학년</th>
                 <th>성별</th>
+                <th>수정</th>
             </tr>
             <tr v-for="(item, index) in list">
-                <td><input type="radio" :id="'stu-' + index" name="stuKey" :value="item.STU_NO" v-model="selectItem"></td>
-                <td><label :for="'stu-' + index">{{item.STU_NO}}</label></td>
-                <td>{{item.STU_NAME}}</td>
-                <td>{{item.STU_DEPT}}</td>
-                <td>{{item.STU_GRADE}}</td>
-                <td>
-                    <span v-if="item.STU_GENDER == 'M'">남자</span>
-                    <span v-else>여자</span>
-                </td>
+                <template v-if="item.STU_NO == updateStuNo">
+                    <td><input type="radio" :id="'stuNo_' + index" :value="item.STU_NO" v-model="selectItem" name="stuKey"></td>
+                    <td><label :for="'stuNo_' + index">{{item.STU_NO}}</label></td>
+                    <td><input v-model="item.STU_NAME"></td>
+                    <td><input v-model="item.STU_DEPT"></td>
+                    <td><input v-model="item.STU_GRADE"></td>
+                    <td><input v-model="item.STU_GENDER"></td>
+                    <td><button @click="fnSave(item)">저장</button></td>
+                </template>
+                <template v-else>
+                    <td><input type="radio" :id="'stuNo_' + index" :value="item.STU_NO" v-model="selectItem" name="stuKey"></td>
+                    <td><label :for="'stuNo_' + index">{{item.STU_NO}}</label></td>
+                    <td>{{item.STU_NAME}}</td>
+                    <td>{{item.STU_DEPT}}</td>
+                    <td>{{item.STU_GRADE}}</td>
+                    <td>
+                        <span v-if="item.STU_GENDER == 'M'">남자</span>
+                        <span v-else>여자</span>
+                    </td>
+                    <td><button @click="fnUpdate(item.STU_NO)">수정</button></td>
+                </template>    
+
             </tr>
         </table>
-        <button @click="fnRemove" class="btn">삭제</button>
-
+        <button class="btn" @click="fnRemove">삭제</button>
     </div>
 
     <script>
@@ -115,9 +128,11 @@
 
                 fnRemove(){
                     var self = this;
+
                     if(!confirm("정말 삭제할거냐?")){
                         return;
                     };           
+                    var self = this;
                     var url = `http://localhost:3000/delete?stuNo=${self.selectItem}`
                     $.ajax({
                         url: url,
@@ -125,7 +140,8 @@
                         type: "GET",
                         data: {},
                         success: function (data) {
-                            alert(data[0].message);                      
+                            alert(data[0].message);
+                        
                             self.fnGetList();                     
                         }
                     });
